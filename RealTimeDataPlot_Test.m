@@ -104,9 +104,9 @@ plot(samples,voltageLogs)
 xlabel('Samples')
 ylabel('Voltage (V)')
 
-% %% Save results to a file
-% T = table(samples',voltageLogs','VariableNames',{'Samples','Voltage'});
-% filename = 'Voltage_Data.txt';
-% % Write table to file 
-% writetable(T,filename)
-% disp('Data saved to file')
+%% Save results to a file
+T = table(samples',voltageLogs','VariableNames',{'Samples','Voltage'});
+filename = 'Voltage_Data.txt';
+% Write table to file 
+writetable(T,filename)
+disp('Data saved to file')
