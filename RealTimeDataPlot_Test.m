@@ -1,6 +1,7 @@
 % Real-time plot test
 clear
 clc
+close all
 
 a = arduino('COM20', 'Mega2560');
 %% Record and plot voltage data
@@ -8,13 +9,13 @@ cont = 0;
 samples = [];
 t = [];
 voltageData = [];
-disp('Start time stamp')
 stop = 1;
 
+disp('Start time stamp')
 tic
 while stop
-    writeDigitalPin(a, 'D11', 1);
-    writeDigitalPin(a, 'D12', 0);
+    writeDigitalPin(a, 'D11', 0);
+    writeDigitalPin(a, 'D12', 1);
     cont = cont + 1;
     % Read current voltage value
     v = readVoltage(a,'A7');
@@ -23,17 +24,20 @@ while stop
     % Get time since starting
     t(cont) = toc;
     % Stop condition
-    if v > 1.5 % v < 0.2
+    if v < .4 % v < 0.4
         stop = 0;
     end
 end
+cont = cont + 1;
+samples(cont) = toc;
 toc
 
 writeDigitalPin(a, 'D11', 0);
 writeDigitalPin(a, 'D12', 0);
 % Post-process and plot the data
+[xS, yS] = size(samples);
 figure
-plot(samples,voltageData,'-')
+plot(samples(1,1:yS-1),voltageData,'-')
 xlabel('Samples')
 ylabel('Voltage (V)')
 title('Voltage data from pot')
@@ -131,7 +135,7 @@ voltageData(cont) = sfreq;
 
 %% Save results to a file
 % T = table(samples',voltageData','VariableNames',{'Samples','Voltage'});
-% filename = 'Voltage_DataU_5.txt';
+% filename = 'TF_B3.txt';
 % % Write table to file 
 % writetable(T,filename)
 % disp('Data saved to file')
