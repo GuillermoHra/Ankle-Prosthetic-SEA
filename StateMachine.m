@@ -2,8 +2,9 @@
 % PID for position control
 % TODO: Angle-Voltage Function (Done)
 % TODO: State-Machine (Done)
-% TODO: Curve reference
 % TODO: Force controller
+% TODO: Curve reference
+
 close all
 clear
 clc
@@ -11,6 +12,8 @@ clc
 a = arduino('COM20', 'Mega2560');
 pos = [];
 pos_cont = 1;
+force = [];
+force_cont = 1;
 
 % 1=Initial State, 2=CP, 3=CD, 4=PP
 state = 1;
@@ -32,6 +35,7 @@ while(1)
         c(1) = v;
         pos(pos_cont) = c(1);
         pos_cont = pos_cont + 1;
+        
         e(1) = r(1)-c(1);
         m(1) = (1/(2*T))*((2*T*Kp+Ki*(T^2)+4*Kd)*e(1));
         if abs(m(1)) > 5
@@ -220,7 +224,7 @@ while(1)
     if state == 3
         % PID Code
         % PID parameters
-        Kp = 20; %4.061;
+        Kp = 25; %4.061;
         Kd = 0; %171.6;
         Ki = 4; %.8816;
 
