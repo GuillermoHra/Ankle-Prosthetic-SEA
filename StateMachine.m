@@ -2,7 +2,8 @@
 % PID for position control
 % TODO: Angle-Voltage Function (Done)
 % TODO: State-Machine (Done)
-% TODO: Force controller
+% TODO: Force controller (Almost done)
+% TODO: Change variable names in StateMachine
 % TODO: Curve reference
 
 close all
