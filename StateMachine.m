@@ -119,6 +119,7 @@ while(1)
 %         xlabel('k');ylabel('manipulation');grid;legend('m(k)');
         % END of PID controller
         state = 2;
+        pause(1);
     end
     %% END of initial state
 
@@ -126,9 +127,9 @@ while(1)
     if state == 2
         % PID Code
         % PID parameters
-        Kp = 15; %4.061;
+        Kp = 20; %4.061;
         Kd = 0; %171.6;
-        Ki = 2; %.8816;
+        Ki = 4; %.8816;
 
         N = 300;
         r = 0.45 * ones(N); %G(k)
@@ -222,6 +223,7 @@ while(1)
 %         xlabel('k');ylabel('manipulation');grid;legend('m(k)');
         % END of PID controller
         state = 3;
+        pause(1);
     end
     %% END of CP
 
@@ -229,9 +231,9 @@ while(1)
     if state == 3
         % PID Code
         % PID parameters
-        Kp = 25; %4.061;
+        Kp = 28; %4.061;
         Kd = 0; %171.6;
-        Ki = 4; %.8816;
+        Ki = 5; %.8816;
 
         N = 300;
         r = 0.92 * ones(N); %G(k)
@@ -325,6 +327,7 @@ while(1)
 %         xlabel('k');ylabel('manipulation');grid;legend('m(k)');
         % END of PID controller
         state = 4;
+        pause(1);
     end
     %% END of CD
 
@@ -428,6 +431,7 @@ while(1)
 %         xlabel('k');ylabel('manipulation');grid;legend('m(k)');
         % END of PID controller
         state = 2;
+        pause(1);
     end
     %% END of PP
 end
@@ -516,10 +520,11 @@ xlabel('k');ylabel('output');
 % %% END of PID controller
 
 % % Plots
-% T=1*(1:k-1);
-% subplot(3,1,1),plot(T,c,'r-');
-% title('PID Controller');
-% xlabel('k');ylabel('output');grid;legend('c(k)');
+% T=1*(1:501);
+% plot(T,pos(300:800),'r-','LineWidth', 3);
+% title('FSM Ankle Gait Simulation');
+% xlim([0 500]);
+% xlabel('Samples');ylabel('Position (volts)');grid;legend('Ankle position');
 % subplot(3,1,2),plot(T,e,'b-');
 % xlabel('k');ylabel('error');grid;legend('e(k)');
 % subplot(3,1,3),plot(T,m,'k-');
