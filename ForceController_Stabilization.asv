@@ -82,7 +82,7 @@ while(1)
             e(k) = r(k)-c(k);
             m(k) = (1/(2*T))*((2*T*m(k-2)) + ((2*T*Kp+Ki*(T^2)+4*Kd)*e(k)) + ((2*Ki*(T^2)-8*Kd)*e(k-1)) + ((-2*T*Kp+Ki*(T^2)+4*Kd)*e(k-2)));
             if e(k) > 0
-                if f > 2.4 && f < 4.0 % No external force
+                if f > 1.0 && f < 4.0 % No external force
                     if abs(m(k)) > 5
                         writePWMVoltage(a, dForwardPin, 5);
                         writePWMVoltage(a, dBackwardPin, 0);
@@ -211,7 +211,7 @@ while(1)
                     writePWMVoltage(a, dBackwardPin, 0);
                 end
             else
-                if f > 2.4 && f < 4.0 % No external force
+                if f > 1.0 && f < 4.0 % No external force
                     if abs(m(k)) > 5
                         writePWMVoltage(a, dForwardPin, 0);
                         writePWMVoltage(a, dBackwardPin, 5);
@@ -223,7 +223,7 @@ while(1)
                         writePWMVoltage(a, dBackwardPin, 0);
                     end
                 else
-                     if f < 2.4       % External force going down, stop
+                     if f < 3.2       % External force going down, stop
                         for i=k+1:k+30
                             r(i) = c(k);
                         end
