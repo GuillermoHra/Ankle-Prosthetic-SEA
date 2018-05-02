@@ -5,7 +5,7 @@ close all
 clear
 clc
 
-a = arduino('COM20', 'Mega2560');
+a = arduino('/dev/cu.usbmodem1421', 'Mega2560');
 aPositionPin = 'A7';
 aForcePin = 'A8';
 dForwardPin = 'D10';
